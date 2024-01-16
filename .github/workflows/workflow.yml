@@ -21,4 +21,5 @@ jobs:
           flake8 service --count --max-complexity=10 --max-line-length=127 --statistics
       - name: Run unit tests with nose
         run: nosetests -v --with-spec --spec-color --with-coverage --cover-package=app
-      
+      - name: OpenShift client
+        run: oc create deployment $(params.app-name) --image=$(params.build-image) --dry-run=client -o yaml | oc apply -f -
